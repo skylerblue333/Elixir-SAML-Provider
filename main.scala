@@ -1,1 +1,0 @@
-// Starting Elixir-SAML-Provider service\n
