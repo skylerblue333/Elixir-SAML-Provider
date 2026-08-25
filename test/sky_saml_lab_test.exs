@@ -69,6 +69,8 @@ defmodule SkySamlLabTest do
              SkySamlLab.validate_assertion(base, config, "urn:sky:idp", 1_300)
 
     expired = %{base | audience: "urn:sky:audience"}
-    assert {:error, :expired} = SkySamlLab.validate_assertion(expired, config, "urn:sky:idp", 2_000)
+
+    assert {:error, :expired} =
+             SkySamlLab.validate_assertion(expired, config, "urn:sky:idp", 2_000)
   end
 end
