@@ -39,6 +39,8 @@ defmodule SkySamlLab do
   @spec validate_assertion(map(), sp_config(), String.t(), integer(), non_neg_integer()) ::
           :ok | {:error, atom()}
   def validate_assertion(assertion, config, expected_issuer, now, clock_skew \\ 60)
+
+  def validate_assertion(assertion, config, expected_issuer, now, clock_skew)
       when is_map(assertion) and is_map(config) and is_integer(now) and
              is_integer(clock_skew) and clock_skew >= 0 and clock_skew <= @max_clock_skew do
     with {:ok, issuer} <- bounded_string(assertion[:issuer], @max_id),
