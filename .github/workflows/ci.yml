@@ -1,0 +1,16 @@
+name: saml-lab-ci
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: '27'
+          elixir-version: '1.17'
+      - run: mix format --check-formatted
+      - run: mix compile --warnings-as-errors
+      - run: mix test
